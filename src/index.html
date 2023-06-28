@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Emoji Pastaio</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+  </head>
+  <body>
+    <main>
+        <h1>Cook up a spicy emoji pasta!</h1>
+        <div id="text-container">
+            <textarea id="raw-text-input"></textarea>
+            <textarea id="emojified-text-input" readonly></textarea>
+        </div>
+        <br>
+        <button id="submit-button">Submit</button>
+        <input id="embeddings-checkbox" type="checkbox">Use Word Embeddings</input>
+        <script src="s2v.js" type="module"></script>
+        <script src="index.js" type="module"></script>
+    </main>
+  </body>
+</html>

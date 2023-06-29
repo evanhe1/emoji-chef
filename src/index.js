@@ -4,7 +4,6 @@ const rawTextInput = document.getElementById("raw-text-input");
 const emojifiedTextInput = document.getElementById("emojified-text-input");
 const submitButton = document.getElementById("submit-button");
 const embeddingsCheckbox = document.getElementById("embeddings-checkbox");
-let prevValue = "";
 
 const handleEmojify = async () => {
     const rawText = rawTextInput.value;

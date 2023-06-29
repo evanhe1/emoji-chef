@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import emojiToDescs from "./emoji-en-US.json" assert {type: "json"};
+import emojiToDescs from "../emoji-en-US.json" assert {type: "json"};
 
 const descToEmojis = {};
 for (const [emoji, descs] of Object.entries(emojiToDescs)) {
@@ -11,4 +11,4 @@ for (const [emoji, descs] of Object.entries(emojiToDescs)) {
   }
 }
 
-fs.promises.writeFile("desc-to-emojis.json", JSON.stringify(descToEmojis))
+fs.promises.writeFile("../desc-to-emojis.json", JSON.stringify(descToEmojis))

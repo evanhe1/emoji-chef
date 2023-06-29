@@ -14,8 +14,8 @@
  * limitations under the License.
  * =============================================================================
  */
-import descToEmojis from './desc-to-emojis.json' assert { type: "json" };
-import embeddingsArr from './embeddings.json' assert { type: "json" };
+import descToEmojis from '../desc-to-emojis.json' assert { type: "json" };
+import embeddingsArr from '../embeddings.json' assert { type: "json" };
 //import * as tf from '@tensorflow/tfjs-node';
 //import * as use from '@tensorflow-models/universal-sentence-encoder';
 

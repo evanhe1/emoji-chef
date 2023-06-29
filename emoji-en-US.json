@@ -6,7 +6,9 @@
     "happy",
     "joy",
     ":D",
-    "grin"
+    "grin",
+    "i",
+    "me"
   ],
   "😃": [
     "grinning_face_with_big_eyes",
@@ -17,7 +19,9 @@
     ":D",
     ":)",
     "smile",
-    "funny"
+    "funny",
+    "i",
+    "me"
   ],
   "😄": [
     "grinning_face_with_smiling_eyes",
@@ -96,6 +100,7 @@
   ],
   "😉": [
     "winking_face",
+    "wink",
     "face",
     "happy",
     "mischievous",
@@ -189,7 +194,8 @@
     "affection",
     "valentines",
     "infatuation",
-    "kiss"
+    "kiss",
+    "mwah"
   ],
   "😙": [
     "kissing_face_with_smiling_eyes",
@@ -197,7 +203,8 @@
     "affection",
     "valentines",
     "infatuation",
-    "kiss"
+    "kiss",
+    "mwah"
   ],
   "😋": [
     "face_savoring_food",
@@ -207,6 +214,7 @@
     "smile",
     "face",
     "silly",
+    "yum",
     "yummy",
     "nom",
     "delicious",
@@ -220,7 +228,8 @@
     "playful",
     "mischievous",
     "smile",
-    "tongue"
+    "tongue",
+    "troll"
   ],
   "😜": [
     "winking_face_with_tongue",
@@ -231,7 +240,9 @@
     "mischievous",
     "smile",
     "wink",
-    "tongue"
+    "tongue",
+    "troll",
+    "silly"
   ],
   "🤪": [
     "zany_face",
@@ -295,7 +306,8 @@
     "scepticism",
     "disapproval",
     "disbelief",
-    "surprise"
+    "surprise",
+    "sus"
   ],
   "😐": [
     "neutral_face",
@@ -324,7 +336,9 @@
     "mean",
     "prank",
     "smug",
-    "sarcasm"
+    "sarcasm",
+    "rizz",
+    "smirk"
   ],
   "😒": [
     "unamused_face",
@@ -422,12 +436,17 @@
     "green",
     "sick",
     "throw up",
-    "ill"
+    "ill",
+    "yuck"
   ],
   "🤮": [
     "face_vomiting",
     "face",
-    "sick"
+    "sick",
+    "yak",
+    "puke",
+    "gross",
+    "yuck"
   ],
   "🤧": [
     "sneezing_face",
@@ -443,7 +462,8 @@
     "feverish",
     "heat",
     "red",
-    "sweating"
+    "sweating",
+    "smoking"
   ],
   "🥶": [
     "cold_face",
@@ -452,7 +472,8 @@
     "freezing",
     "frozen",
     "frostbite",
-    "icicles"
+    "icicles",
+    "chilly"
   ],
   "🥴": [
     "woozy_face",
@@ -474,7 +495,8 @@
     "face",
     "shocked",
     "mind",
-    "blown"
+    "blown",
+    "woah"
   ],
   "🤠": [
     "cowboy_hat_face",
@@ -486,7 +508,8 @@
     "partying_face",
     "face",
     "celebration",
-    "woohoo"
+    "woohoo",
+    "turnt"
   ],
   "😎": [
     "smiling_face_with_sunglasses",
@@ -495,14 +518,19 @@
     "smile",
     "summer",
     "beach",
-    "sunglass"
+    "sunglass",
+    "smooth",
+    "menace",
+    "confident",
+    "rizz"
   ],
   "🤓": [
     "nerd_face",
     "face",
     "nerdy",
     "geek",
-    "dork"
+    "dork",
+    "smart"
   ],
   "🧐": [
     "face_with_monocle",
@@ -548,7 +576,9 @@
     "impressed",
     "wow",
     "whoa",
-    ":O"
+    ":O",
+    "gasp",
+    "shock"
   ],
   "😯": [
     "hushed_face",
@@ -578,7 +608,8 @@
     "cry",
     "tears",
     "sad",
-    "grievance"
+    "grievance",
+    "please"
   ],
   "😦": [
     "frowning_face_with_open_mouth",
@@ -635,7 +666,9 @@
     "face",
     "munch",
     "scared",
-    "omg"
+    "omg",
+    "shock",
+    "crazy"
   ],
   "😖": [
     "confounded_face",
@@ -652,7 +685,8 @@
     "sick",
     "no",
     "upset",
-    "oops"
+    "oops",
+    "struggle"
   ],
   "😞": [
     "disappointed_face",
@@ -689,7 +723,8 @@
   "🥱": [
     "yawning_face",
     "tired",
-    "sleepy"
+    "sleepy",
+    "boring"
   ],
   "😤": [
     "face_with_steam_from_nose",
@@ -697,21 +732,25 @@
     "gas",
     "phew",
     "proud",
-    "pride"
+    "pride",
+    "tough"
   ],
   "😡": [
     "pouting_face",
     "angry",
     "mad",
     "hate",
-    "despise"
+    "despise",
+    "furious",
+    "pissed"
   ],
   "😠": [
     "angry_face",
     "mad",
     "face",
     "annoyed",
-    "frustrated"
+    "frustrated",
+    "pissed"
   ],
   "🤬": [
     "face_with_symbols_on_mouth",
@@ -725,7 +764,8 @@
   "😈": [
     "smiling_face_with_horns",
     "devil",
-    "horns"
+    "horns",
+    "menace"
   ],
   "👿": [
     "angry_face_with_horns",
@@ -760,7 +800,8 @@
   ],
   "🤡": [
     "clown_face",
-    "face"
+    "face",
+    "circus"
   ],
   "👹": [
     "ogre",
@@ -814,13 +855,17 @@
     "animal",
     "cats",
     "happy",
-    "smile"
+    "smile",
+    "pussy",
+    "kitty"
   ],
   "😸": [
     "grinning_cat_with_smiling_eyes",
     "animal",
     "cats",
-    "smile"
+    "smile",
+    "pussy",
+    "kitty"
   ],
   "😹": [
     "cat_with_tears_of_joy",
@@ -844,13 +889,17 @@
     "cat_with_wry_smile",
     "animal",
     "cats",
-    "smirk"
+    "smirk",
+    "pussy",
+    "kitty"
   ],
   "😽": [
     "kissing_cat",
     "animal",
     "cats",
-    "kiss"
+    "kiss",
+    "pussy",
+    "kitty"
   ],
   "🙀": [
     "weary_cat",
@@ -858,7 +907,9 @@
     "cats",
     "munch",
     "scared",
-    "scream"
+    "scream",
+    "pussy",
+    "kitty"
   ],
   "😿": [
     "crying_cat",
@@ -868,19 +919,24 @@
     "sad",
     "cats",
     "upset",
-    "cry"
+    "cry",
+    "pussy",
+    "kitty"
   ],
   "😾": [
     "pouting_cat",
     "animal",
-    "cats"
+    "cats",
+    "pussy",
+    "kitty"
   ],
   "🙈": [
     "see_no_evil_monkey",
     "monkey",
     "animal",
     "nature",
-    "haha"
+    "haha",
+    "hide_and_seek"
   ],
   "🙉": [
     "hear_no_evil_monkey",
@@ -902,7 +958,8 @@
     "love",
     "like",
     "affection",
-    "valentines"
+    "valentines",
+    "mwah"
   ],
   "💌": [
     "love_letter",
@@ -981,7 +1038,9 @@
     "sorry",
     "break",
     "heart",
-    "heartbreak"
+    "heartbreak",
+    "crushed",
+    "devastated"
   ],
   "❤️": [
     "red_heart",
@@ -1046,7 +1105,8 @@
     "quiz",
     "test",
     "pass",
-    "hundred"
+    "hundred",
+    "wilt"
   ],
   "💢": [
     "anger_symbol",
@@ -1058,7 +1118,8 @@
     "bomb",
     "explode",
     "explosion",
-    "blown"
+    "blown",
+    "bang"
   ],
   "💫": [
     "dizzy",
@@ -1071,7 +1132,8 @@
     "sweat_droplets",
     "water",
     "drip",
-    "oops"
+    "oops",
+    "cum"
   ],
   "💨": [
     "dashing_away",
@@ -1100,7 +1162,8 @@
     "words",
     "message",
     "talk",
-    "chatting"
+    "chatting",
+    "chat"
   ],
   "👁️‍🗨️": [
     "eye_in_speech_bubble",
@@ -1111,7 +1174,8 @@
     "words",
     "message",
     "talk",
-    "chatting"
+    "chatting",
+    "chat"
   ],
   "🗯️": [
     "right_anger_bubble",
@@ -1155,7 +1219,8 @@
     "hand_with_fingers_splayed",
     "hand",
     "fingers",
-    "palm"
+    "palm",
+    "five"
   ],
   "✋": [
     "raised_hand",
@@ -1232,7 +1297,8 @@
     "fingers",
     "hand",
     "direction",
-    "right"
+    "right",
+    "point"
   ],
   "👆": [
     "backhand_index_pointing_up",
@@ -1274,7 +1340,8 @@
     "cool",
     "hand",
     "like",
-    "+1"
+    "+1",
+    "lgtm"
   ],
   "👎": [
     "thumbs_down",
@@ -1288,7 +1355,8 @@
     "raised_fist",
     "fingers",
     "hand",
-    "grasp"
+    "grasp",
+    "power"
   ],
   "👊": [
     "oncoming_fist",
@@ -1383,15 +1451,19 @@
     "hand",
     "summer",
     "strong",
-    "biceps"
+    "biceps",
+    "buff",
+    "tough"
   ],
   "🦾": [
     "mechanical_arm",
-    "accessibility"
+    "accessibility",
+    "terminator"
   ],
   "🦿": [
     "mechanical_leg",
-    "accessibility"
+    "accessibility",
+    "terminator"
   ],
   "🦵": [
     "leg",
@@ -1422,7 +1494,10 @@
   "🧠": [
     "brain",
     "smart",
-    "intelligent"
+    "intelligent",
+    "einstein",
+    "genius",
+    "brilliant"
   ],
   "🦷": [
     "tooth",
@@ -1452,7 +1527,8 @@
   "👅": [
     "tongue",
     "mouth",
-    "playful"
+    "playful",
+    "lick"
   ],
   "👄": [
     "mouth",

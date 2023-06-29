@@ -12,14 +12,22 @@
   </head>
   <body>
     <main>
-        <h1>Cook up a spicy emoji pasta!</h1>
+        <h1 id="top-description">Cook up a spicy emoji pasta!</h1>
         <div id="text-container">
             <textarea id="raw-text-input"></textarea>
             <textarea id="emojified-text-input" readonly></textarea>
+            <button id="submit-button">Submit</button>
+            <div id="toggles-container">
+                <label>
+                    <input id="embeddings-checkbox" type="checkbox">
+                    Word Embeddings
+                </label>
+                <label>
+                    <input id="live-mode-checkbox" type="checkbox">
+                    Live Mode
+                </label>
+            </div>
         </div>
-        <br>
-        <button id="submit-button">Submit</button>
-        <input id="embeddings-checkbox" type="checkbox">Use Word Embeddings</input>
         <script src="s2v.js" type="module"></script>
         <script src="index.js" type="module"></script>
     </main>

@@ -25,41 +25,41 @@ const embeddings = tf.tensor(embeddingsArr);
 const normalizedEmbeddings = tf.div(embeddings, tf.norm(embeddings, 2, 1, true));
 
 export const emojifyString = async (input, useEmbeddings) => {
-  const origInputArr = input.split(/\s+/).filter(word => word);
-  const inputArr = origInputArr.map(word => word.replace(/^[^\w\s]+|[^\w\s]+$/g, '').toLowerCase());
-  let promises = inputArr.map((word, i) => getMostSimilar(word, useEmbeddings).then(emoji => emoji ? origInputArr[i] + " " + emoji : origInputArr[i]));
-  const emojifiedArr = await Promise.all(promises);
-  return emojifiedArr.join(" ")
+    const origInputArr = input.split(/\s+/).filter(word => word);
+    const inputArr = origInputArr.map(word => word.replace(/^[^\w\s]+|[^\w\s]+$/g, '').toLowerCase());
+    let promises = inputArr.map((word, i) => getMostSimilar(word, useEmbeddings).then(emoji => emoji ? origInputArr[i] + " " + emoji : origInputArr[i]));
+    const emojifiedArr = await Promise.all(promises);
+    return emojifiedArr.join(" ")
 }
 
-const getMostSimilar = async (target, useEmbeddings) => {
-  if (target in descToEmojis) {
-    const candidateEmojis = descToEmojis[target]
+export const getMostSimilar = async (target, useEmbeddings) => {
+    if (target in descToEmojis) {
+      const candidateEmojis = descToEmojis[target]
+      return candidateEmojis[Math.floor(Math.random()*candidateEmojis.length)]
+    }
+
+    if (!useEmbeddings) {
+      return;
+    }
+
+    const targetVector = await model.embed(target);
+    // Normalize the vectors
+    const normalizedTarget = tf.div(targetVector, tf.norm(targetVector));
+
+    // Compute the cosine similarity
+    const similarity = tf.matMul(normalizedEmbeddings, normalizedTarget.reshape([-1, 1]));
+
+    // Find the index of the most similar vector
+    const score = Math.max(...similarity.dataSync());
+    const mostSimilarIndex = similarity.argMax().dataSync()[0];
+
+    // Get the most similar vector
+    const mostSimilarVector = embeddings.arraySync()[mostSimilarIndex];
+    const mostSimilarWord = descs[mostSimilarIndex];
+
+    //console.log('Most similar vector:', mostSimilarVector);
+    console.log('Most similar word:', descs[mostSimilarIndex]);
+
+    const candidateEmojis = descToEmojis[mostSimilarWord]
     return candidateEmojis[Math.floor(Math.random()*candidateEmojis.length)]
-  }
-
-  if (!useEmbeddings) {
-    return;
-  }
-
-  const targetVector = await model.embed(target);
-  // Normalize the vectors
-  const normalizedTarget = tf.div(targetVector, tf.norm(targetVector));
-
-  // Compute the cosine similarity
-  const similarity = tf.matMul(normalizedEmbeddings, normalizedTarget.reshape([-1, 1]));
-
-  // Find the index of the most similar vector
-  const score = Math.max(...similarity.dataSync());
-  const mostSimilarIndex = similarity.argMax().dataSync()[0];
-
-  // Get the most similar vector
-  const mostSimilarVector = embeddings.arraySync()[mostSimilarIndex];
-  const mostSimilarWord = descs[mostSimilarIndex];
-
-  //console.log('Most similar vector:', mostSimilarVector);
-  console.log('Most similar word:', descs[mostSimilarIndex]);
-
-  const candidateEmojis = descToEmojis[mostSimilarWord]
-  return candidateEmojis[Math.floor(Math.random()*candidateEmojis.length)]
 }

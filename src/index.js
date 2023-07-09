@@ -1,24 +1,22 @@
-import emojisList from '../emoji-en-US.json' assert { type: "json" };
+
 import {emojifyString, getMostSimilar}  from './s2v.js';
 
+const loadingOverlays = document.querySelectorAll(".loading-overlay");
+
+const resEmojis = await fetch('./emoji-en-US.json');
+const emojisList = await resEmojis.json();
 const rawTextarea = document.getElementById("raw-text-input");
 const emojifiedTextarea = document.getElementById("emojified-text-input");
 const submitButton = document.getElementById("submit-button");
 const embeddingsCheckbox = document.getElementById("embeddings-checkbox");
 const liveModeCheckbox = document.getElementById("live-mode-checkbox");
+const textContainer = document.getElementById("text-container")
 let prevRawInput = "";
 let curRawInput = "";
+let emojifiedInput = "";
 let prevCursorPosition = 0;
 let cursorPosition = 0;
 const letterRegex = /[a-zA-Z]$/;
-
-const handleEmojify = async () => {
-    const rawText = rawTextarea.value;
-    console.log("checked", embeddingsCheckbox.checked)
-    const useEmbeddings = embeddingsCheckbox.checked;
-    const emojifiedText = await emojifyString(rawText, useEmbeddings);
-    emojifiedTextarea.value = emojifiedText;
-}
 
 const getDiff = (previous, current) => {
     let lengthDiff = current.length - previous.length;
@@ -54,7 +52,13 @@ const getEmojifiedPosition = (raw, emojified, end) => {
     return j;
 }
 
-submitButton.addEventListener("click", handleEmojify);
+submitButton.addEventListener("click", async () => {
+    const rawText = rawTextarea.value;
+    console.log("checked", embeddingsCheckbox.checked)
+    const useEmbeddings = embeddingsCheckbox.checked;
+    emojifiedInput = await emojifyString(rawText, useEmbeddings);
+    emojifiedTextarea.value = emojifiedInput;
+});
 
 rawTextarea.addEventListener('click',() => {
     cursorPosition = rawTextarea.selectionStart;
@@ -68,21 +72,21 @@ async function handleInsertion() {
     const useEmbeddings = embeddingsCheckbox.checked;
     let insertionString = getDiff(prevRawInput, curRawInput);
     // need to use prev raw input to account for the fact that the latest insertion does not exist in the emojified textarea
-    const insertionPosition = getEmojifiedPosition(prevRawInput, emojifiedTextarea.value, prevCursorPosition);
+    const insertionPosition = getEmojifiedPosition(prevRawInput, emojifiedInput, prevCursorPosition);
     // big chunk was copy-pasted
     if (curRawInput.length > prevRawInput.length + 1) {
         // prepend partial word before difference string
         let i = insertionPosition
-        for (; i >= 1 && emojifiedTextarea.value[i - 1].match(letterRegex); i--) {
-            insertionString = emojifiedTextarea.value[i-1] + insertionString;
+        for (; i >= 1 && emojifiedInput[i - 1].match(letterRegex); i--) {
+            insertionString = emojifiedInput[i-1] + insertionString;
         }
         // append partial word after difference string
         let j = insertionPosition
-        for (; j < emojifiedTextarea.value.length && emojifiedTextarea.value[j].match(letterRegex); j++) {
-            insertionString += emojifiedTextarea.value[j];
+        for (; j < emojifiedInput.length && emojifiedInput[j].match(letterRegex); j++) {
+            insertionString += emojifiedInput[j];
         }
         insertionString = await emojifyString(insertionString, useEmbeddings);
-        emojifiedTextarea.value = emojifiedTextarea.value.slice(0, i) + insertionString + emojifiedTextarea.value.slice(j);
+        emojifiedInput = emojifiedInput.slice(0, i) + insertionString + emojifiedInput.slice(j);
     } else {
         const lastCharacter = curRawInput[cursorPosition-1];
         const secondToLastCharacter = curRawInput[cursorPosition-2];
@@ -96,19 +100,19 @@ async function handleInsertion() {
             const mostSimilar = await getMostSimilar(promptString, useEmbeddings)
             insertionString += mostSimilar ? mostSimilar + " " : "";
         }
-        emojifiedTextarea.value = emojifiedTextarea.value.slice(0, insertionPosition) + insertionString + emojifiedTextarea.value.slice(insertionPosition);
+        emojifiedInput = emojifiedInput.slice(0, insertionPosition) + insertionString + emojifiedInput.slice(insertionPosition);
     }
 }
 
 async function handleDeletion() {
     let deletionString = getDiff(curRawInput, prevRawInput);
     // deletionStart is location of first char to be deleted
-    let deletionStart = getEmojifiedPosition(prevRawInput, emojifiedTextarea.value, cursorPosition);
+    let deletionStart = getEmojifiedPosition(prevRawInput, emojifiedInput, cursorPosition);
     // deletionEnd is location of first char to not be deleted after deletionStart
-    const deletionEnd = getEmojifiedPosition(prevRawInput, emojifiedTextarea.value, cursorPosition+deletionString.length);
+    const deletionEnd = getEmojifiedPosition(prevRawInput, emojifiedInput, cursorPosition+deletionString.length);
     // account for trailing emojis
     let nextSpace = deletionEnd;
-    while (nextSpace < emojifiedTextarea.value.length && emojifiedTextarea.value[nextSpace] !== " ") {
+    while (nextSpace < emojifiedInput.length && emojifiedInput[nextSpace] !== " ") {
         nextSpace++;
     }
 
@@ -116,24 +120,24 @@ async function handleDeletion() {
     if (nextSpace === deletionEnd) {
         // start emojiStrStart at position trailing of space and check position before it
         let curEmojiStr = ""
-        while (deletionStart >= 0 && emojifiedTextarea.value[deletionStart] !== " ") {
-            curEmojiStr = emojifiedTextarea.value[deletionStart] + curEmojiStr;
+        while (deletionStart >= 0 && emojifiedInput[deletionStart] !== " ") {
+            curEmojiStr = emojifiedInput[deletionStart] + curEmojiStr;
             deletionStart--;
         }
     }
     let emojiStrEnd = nextSpace+1;
     let curEmojiStr = ""
-    while (emojiStrEnd < emojifiedTextarea.value.length && emojifiedTextarea.value[emojiStrEnd] !== " ") {
-        curEmojiStr += emojifiedTextarea.value[emojiStrEnd];
+    while (emojiStrEnd < emojifiedInput.length && emojifiedInput[emojiStrEnd] !== " ") {
+        curEmojiStr += emojifiedInput[emojiStrEnd];
         emojiStrEnd++;
     }
 
     if (curEmojiStr in emojisList) {
         // deleting deletion string, leaving an incomplete word and emoji string following newly created incomplete word
-        emojifiedTextarea.value = emojifiedTextarea.value.slice(0, deletionStart) + emojifiedTextarea.value.slice(deletionEnd, nextSpace) + emojifiedTextarea.value.slice(emojiStrEnd)
+        emojifiedInput = emojifiedInput.slice(0, deletionStart) + emojifiedInput.slice(deletionEnd, nextSpace) + emojifiedInput.value.slice(emojiStrEnd)
     } else {
         // just deleting deletion string since no incomplete word was created
-        emojifiedTextarea.value = emojifiedTextarea.value.slice(0, deletionStart) + emojifiedTextarea.value.slice(deletionEnd);
+        emojifiedInput = emojifiedInput.slice(0, deletionStart) + emojifiedInput.slice(deletionEnd);
     }
 }
 
@@ -150,5 +154,22 @@ rawTextarea.addEventListener('input', async function(e) {
         } else {
             await handleDeletion();
         }
+        emojifiedTextarea.value = emojifiedInput;
     }
 });
+
+liveModeCheckbox.addEventListener('click', async () => {
+    const useLiveMode = liveModeCheckbox.checked;
+     const useEmbeddings = embeddingsCheckbox.checked;
+    emojifiedTextarea.value = useLiveMode ? emojifiedInput : "";
+    submitButton.classList.toggle("hidden-button");
+    if (useLiveMode && rawTextarea.value !== "" && emojifiedInput === "") {
+        for (const overlay of loadingOverlays) {
+            overlay.style.visibility = "visible";
+        }
+        emojifiedTextarea.value = emojifiedInput = await emojifyString(rawTextarea.value, useEmbeddings);
+        for (const overlay of loadingOverlays) {
+            overlay.style.visibility = "hidden";
+        }
+    }
+})

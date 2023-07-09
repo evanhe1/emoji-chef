@@ -1,7 +1,7 @@
 {
-  "name": "frontend",
+  "name": "emoji-chef",
   "version": "1.0.0",
-  "main": "s2v.js",
+  "main": "src/s2v.js",
   "author": "Evan He",
   "license": "MIT",
   "type": "module",

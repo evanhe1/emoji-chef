@@ -14,15 +14,23 @@
  * limitations under the License.
  * =============================================================================
  */
-import descToEmojis from '../desc-to-emojis.json' assert { type: "json" };
-import embeddingsArr from '../embeddings.json' assert { type: "json" };
-//import * as tf from '@tensorflow/tfjs-node';
-//import * as use from '@tensorflow-models/universal-sentence-encoder';
+
+const loadingOverlays = document.querySelectorAll(".loading-overlay");
+
+const resDesc = await fetch('./desc-to-emojis.json');
+const descToEmojis = await resDesc.json();
+const resEmbeddings = await fetch('./embeddings.json');
+const embeddingsArr = await resEmbeddings.json()
+
 
 const descs = Object.keys(descToEmojis).sort();
 const model = await use.load();
 const embeddings = tf.tensor(embeddingsArr);
 const normalizedEmbeddings = tf.div(embeddings, tf.norm(embeddings, 2, 1, true));
+
+for (const overlay of loadingOverlays) {
+    overlay.style.visibility = "hidden";
+}
 
 export const emojifyString = async (input, useEmbeddings) => {
     const origInputArr = input.split(/\s+/).filter(word => word);

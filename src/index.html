@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Emoji Pastaio</title>
+    <title>Emoji Chef</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
@@ -14,19 +14,25 @@
     <main>
         <h1 id="top-description">Cook up a spicy emoji pasta!</h1>
         <div id="text-container">
-            <textarea id="raw-text-input"></textarea>
-            <textarea id="emojified-text-input" readonly></textarea>
-            <button id="submit-button">Submit</button>
-            <div id="toggles-container">
-                <label>
-                    <input id="embeddings-checkbox" type="checkbox" checked>
-                    Word Embeddings
-                </label>
-                <label>
-                    <input id="live-mode-checkbox" type="checkbox" checked>
-                    Live Mode
-                </label>
+            <div class="overlay-container">
+                <div class="loading-overlay">Model Loading...</div>
+                <textarea id="raw-text-input"></textarea>
             </div>
+            <div class="overlay-container">
+                <div class="loading-overlay">Model Loading...</div>
+                <textarea id="emojified-text-input" readonly></textarea>
+            </div>
+            <button id="submit-button" class="hidden-button">Submit</button>
+            <div id="toggles-container">
+            <label>
+                <input id="embeddings-checkbox" type="checkbox" checked>
+                Word Embeddings
+            </label>
+            <label>
+                <input id="live-mode-checkbox" type="checkbox" checked>
+                Live Mode
+            </label>
+        </div>
         </div>
         <script src="s2v.js" type="module"></script>
         <script src="index.js" type="module"></script>
